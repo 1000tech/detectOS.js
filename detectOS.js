@@ -17,27 +17,42 @@ var Detect = {
     dataOS : [
         {
             string: navigator.platform,
-            subString: "Win",
-            identity: "Windows"
+            subString: 'Win',
+            identity: 'Windows'
         },
         {
             string: navigator.platform,
-            subString: "Mac",
-            identity: "Mac"
+            subString: 'Mac',
+            identity: 'macOS'
         },
         {
             string: navigator.userAgent,
-            subString: "iPhone",
-            identity: "iOS"
+            subString: 'iPhone',
+            identity: 'iOS'
+        },
+        {
+            string: navigator.userAgent,
+            subString: 'iPad',
+            identity: 'iOS'
+        },
+        {
+            string: navigator.userAgent,
+            subString: 'iPod',
+            identity: 'iOS'
+        },
+        {
+            string: navigator.userAgent,
+            subString: 'Android',
+            identity: 'Android'
         },
         {
             string: navigator.platform,
-            subString: "Linux",
-            identity: "Linux"
+            subString: 'Linux',
+            identity: 'Linux'
         }
     ]
-
 };
+
 Detect.init();
 
-console.log(Detect.OS);
+console.log("We know your OS – it's " + Detect.OS + ". We know everything about you.");

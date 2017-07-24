@@ -1,0 +1,25 @@
+{
+  "name": "detectOS.js",
+  "version": "1.0.1",
+  "description": "A simple definition of the popular OS on JS",
+  "author": "1000.tech <info@1000.tech>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1000tech/detectOS.js.git"
+  },
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/1000tech/detectOS.js/issues"
+  },
+  "homepage": "https://github.com/1000tech/detectOS.js#readme",
+  "main": "detectOS.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "JS",
+    "Detect",
+    "OS",
+    "1000.tech"
+  ]
+}
