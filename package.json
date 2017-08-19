@@ -1,7 +1,7 @@
 {
-  "name": "detectOS.js",
-  "version": "1.0.1",
-  "description": "A simple definition of the popular OS on JS",
+  "name": "detectos.js",
+  "version": "1.0.2",
+  "description": "A simple definition of the popular OS and browsers on JS",
   "author": "1000.tech <info@1000.tech>",
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
     "JS",
     "Detect",
     "OS",
+    "browser",
     "1000.tech"
   ]
 }
