@@ -130,7 +130,3 @@ var Detect = {
 };
 
 Detect.init();
-
-console.log("We know your browser – it's " + Detect.browser + " " + Detect.version);
-console.log("We know your OS – it's " + Detect.OS);
-console.log("We know everything about you.");
