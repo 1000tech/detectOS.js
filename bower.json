@@ -1,12 +1,12 @@
 {
-  "name": "detectos.js",
-  "version": "1.0.5",
-  "homepage": "https://github.com/1000tech/detectOS.js",
+  "name": "Detect.js",
+  "version": "1.1.0",
+  "homepage": "https://github.com/1000tech/detect.js",
   "authors": [
     "1000.tech <info@1000.tech>"
   ],
   "description": "A simple definition of the popular OS and browsers on JS",
-  "main": "detectos.js",
+  "main": "detect.js",
   "keywords": [
     "JS",
     "Detect",
