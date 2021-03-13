@@ -14,8 +14,7 @@ bower i detectos.js
 ```
 
 ##### Download:
-
- https://raw.githubusercontent.com/1000tech/detectOS.js/master/detectOS.js
+ https://raw.githubusercontent.com/1000tech/detectOS.js/master/detect.js
 
 ## Usage
 ```smartyconfig
