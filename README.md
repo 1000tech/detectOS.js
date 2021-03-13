@@ -1,21 +1,21 @@
-# Detect.js
+# detectOS.js
 A simple definition of the popular OS and browsers on JS
 
 ## Install
 
 ##### NPM:
 ```smartyconfig
-npm i detect.js
+npm i detectos.js
 ```
 
 ##### Bower:
 ```smartyconfig
-bower i detect.js
+bower i detectos.js
 ```
 
 ##### Download:
 
- https://raw.githubusercontent.com/1000tech/detect.js/master/detect.js
+ https://raw.githubusercontent.com/1000tech/detectOS.js/master/detectOS.js
 
 ## Usage
 ```smartyconfig

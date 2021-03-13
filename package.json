@@ -1,18 +1,18 @@
 {
-  "name": "detect.js",
+  "name": "detectos.js",
   "version": "1.1.0",
   "description": "A simple definition of the popular OS and browsers on JS",
   "author": "1000.tech <info@1000.tech>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/1000tech/detect.js.git"
+    "url": "git+https://github.com/1000tech/detectOS.js.git"
   },
   "license": "WTFPL",
   "bugs": {
-    "url": "https://github.com/1000tech/detect.js/issues"
+    "url": "https://github.com/1000tech/detectOS.js/issues"
   },
-  "homepage": "https://github.com/1000tech/detect.js#readme",
-  "main": "detect.js",
+  "homepage": "https://github.com/1000tech/detectOS.js#readme",
+  "main": "detectOS.js",
   "keywords": [
     "JS",
     "Detect",
