@@ -30,6 +30,33 @@ export default class DetectOS {
     dataBrowser() {
         return [
             /***************
+             * Edge
+             ***************/
+            {
+                string: navigator.userAgent,
+                subString: "Edge",
+                identity: "Edge",
+                versionSearch: "Edge"
+            },
+            {
+                string: navigator.userAgent,
+                subString: "Edg",
+                identity: "Edge",
+                versionSearch: "Edg"
+            },
+            {
+                string: navigator.userAgent,
+                subString: "EdgA",
+                identity: "Edge",
+                versionSearch: "EdgA"
+            },
+            {
+                string: navigator.userAgent,
+                subString: "EdgiOS",
+                identity: "Edge",
+                versionSearch: "EdgiOS"
+            },
+            /***************
              * Chrome
              ***************/
             {
@@ -71,15 +98,6 @@ export default class DetectOS {
                 subString: "Trident",
                 identity: "IE11",
                 versionSearch: "rv"
-            },
-            /***************
-             * Edge
-             ***************/
-            {
-                string: navigator.userAgent,
-                subString: "Edge",
-                identity: "Edge",
-                versionSearch: "Edge"
             },
             /***************
              * Firefox
