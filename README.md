@@ -1,5 +1,5 @@
 # DetectOS.js
-Simple definition of popular operating systems and browsers in JS without dependencies.
+Simple definition of popular operating systems and browsers in JavaScript without dependencies.
 
 ## Install
 
