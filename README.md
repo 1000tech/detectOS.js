@@ -29,4 +29,4 @@ console.log("We know everything about you.");
 ```
 
 ## Demo
-Used on [MobiDevices](https://mobidevices.ru)
+Used on [MobiDevices](https://mobidevices.com)
