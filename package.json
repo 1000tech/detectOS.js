@@ -3,6 +3,7 @@
   "version": "1.5.2",
   "description": "A simple definition of the popular OS and browsers on JS",
   "author": "1000.tech <info@1000.tech>",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/1000tech/detectOS.js.git"
@@ -12,7 +13,18 @@
     "url": "https://github.com/1000tech/detectOS.js/issues"
   },
   "homepage": "https://github.com/1000tech/detectOS.js#readme",
-  "main": "detectOS.js",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "README.md",
+    "LICENSE.md"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
   "keywords": [
     "JS",
     "Detect",

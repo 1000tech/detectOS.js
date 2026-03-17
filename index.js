@@ -1,196 +1,242 @@
-export default class DetectOS {
-    constructor() {
-        this.browser = this.searchString(this.dataBrowser())
-        this.version = this.searchVersion(navigator.userAgent) || this.searchVersion(navigator.appVersion)
-        this.OS = this.searchString(this.dataOS())
+const BROWSER_ONLY_ERROR = 'DetectOS.js is a browser-only library for frontend runtimes. Use it in the browser or pass a browser-like environment for tests.'
+
+function escapeRegExp(value) {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+function resolveEnvironment(environment) {
+    if (environment) {
+        if (!environment.navigator) {
+            throw new Error(BROWSER_ONLY_ERROR)
+        }
+
+        return environment
     }
 
-    searchString(data) {
+    if (typeof globalThis !== 'undefined' && globalThis.navigator) {
+        return globalThis
+    }
+
+    throw new Error(BROWSER_ONLY_ERROR)
+}
+
+export default class DetectOS {
+    constructor(environment) {
+        const browserEnvironment = resolveEnvironment(environment)
+        const browserMatch = this.searchString(this.dataBrowser(browserEnvironment), browserEnvironment)
+        const osMatch = this.searchString(this.dataOS(browserEnvironment), browserEnvironment)
+        const versionSearchString = browserMatch && (browserMatch.versionSearch || browserMatch.identity)
+        const navigatorObject = browserEnvironment.navigator || {}
+
+        this.browser = browserMatch ? browserMatch.identity : null
+        this.version = versionSearchString
+            ? this.searchVersion(navigatorObject.userAgent, versionSearchString) || this.searchVersion(navigatorObject.appVersion, versionSearchString)
+            : null
+        this.OS = osMatch ? osMatch.identity : null
+        this.os = this.OS
+    }
+
+    searchString(data, environment) {
         for (let i = 0; i < data.length; i++) {
-            let
-                dataString = data[i].string,
-                dataProp = data[i].prop
-            this.versionSearchString = data[i].versionSearch || data[i].identity
-            if (dataString) {
-                if (dataString.indexOf(data[i].subString) !== -1) {
-                    return data[i].identity
-                }
-            } else if (dataProp) {
-                return data[i].identity
+            const item = data[i]
+            const dataString = item.string
+            const dataProp = item.prop
+
+            if (typeof item.test === 'function' && item.test(environment)) {
+                return item
+            }
+
+            if (typeof dataString === 'string' && dataString.indexOf(item.subString) !== -1) {
+                return item
+            }
+
+            if (dataProp) {
+                return item
             }
         }
+
+        return null
     }
 
-    searchVersion(dataString) {
-        let index = dataString.indexOf(this.versionSearchString)
-        if (index === -1) return
-        return parseFloat(dataString.substring(index+this.versionSearchString.length + 1))
+    searchVersion(dataString, versionSearchString) {
+        if (!dataString || !versionSearchString) {
+            return null
+        }
+
+        const versionPattern = new RegExp(`${escapeRegExp(versionSearchString)}[\\/: ]?([0-9.]+)`)
+        const match = dataString.match(versionPattern)
+
+        if (!match) {
+            return null
+        }
+
+        const version = parseFloat(match[1])
+        return Number.isNaN(version) ? null : version
     }
 
-    dataBrowser() {
+    dataBrowser(environment) {
+        const navigatorObject = environment.navigator || {}
+        const windowObject = environment.window || environment
+
         return [
-            /***************
-             * Edge
-             ***************/
             {
-                string: navigator.userAgent,
-                subString: "Edge",
-                identity: "Edge",
-                versionSearch: "Edge"
+                string: navigatorObject.userAgent,
+                subString: 'EdgiOS/',
+                identity: 'Edge',
+                versionSearch: 'EdgiOS'
             },
             {
-                string: navigator.userAgent,
-                subString: "Edg",
-                identity: "Edge",
-                versionSearch: "Edg"
+                string: navigatorObject.userAgent,
+                subString: 'EdgA/',
+                identity: 'Edge',
+                versionSearch: 'EdgA'
             },
             {
-                string: navigator.userAgent,
-                subString: "EdgA",
-                identity: "Edge",
-                versionSearch: "EdgA"
+                string: navigatorObject.userAgent,
+                subString: 'Edge/',
+                identity: 'Edge',
+                versionSearch: 'Edge'
             },
             {
-                string: navigator.userAgent,
-                subString: "EdgiOS",
-                identity: "Edge",
-                versionSearch: "EdgiOS"
-            },
-            /***************
-             * Chrome
-             ***************/
-            {
-                string: navigator.userAgent,
-                subString: "Chrome",
-                identity: "Chrome"
-            },
-            /***************
-             * Safari
-             ***************/
-            {
-                string: navigator.vendor,
-                subString: "Apple",
-                identity: "Safari",
-                versionSearch: "Version"
-            },
-            /***************
-             * For Older Opera (12.18-)
-             ***************/
-            {
-                prop: window.opera,
-                identity: "Opera",
-                versionSearch: "Version"
-            },
-            /***************
-             * Internet Explorer 10
-             ***************/
-            {
-                string: navigator.userAgent,
-                subString: "MSIE",
-                identity: "IE10",
-                versionSearch: "MSIE"
-            },
-            /***************
-             * Internet Explorer 11
-             ***************/
-            {
-                string: navigator.userAgent,
-                subString: "Trident",
-                identity: "IE11",
-                versionSearch: "rv"
-            },
-            /***************
-             * Firefox
-             ***************/
-            {
-                string: navigator.userAgent,
-                subString: "Firefox",
-                identity: "Firefox"
+                string: navigatorObject.userAgent,
+                subString: 'Edg/',
+                identity: 'Edge',
+                versionSearch: 'Edg'
             },
             {
-                string: navigator.userAgent,
-                subString: "Gecko",
-                identity: "Mozilla",
-                versionSearch: "rv"
-            },
-            /***************
-             * For Older Netscapes (4-)
-             ***************/
-            {
-                string: navigator.userAgent,
-                subString: "Mozilla",
-                identity: "Netscape",
-                versionSearch: "Mozilla"
-            },
-            /***************
-             * For Newer Netscapes (6+)
-             ***************/
-            {
-                string: navigator.userAgent,
-                subString: "Netscape",
-                identity: "Netscape"
-            },
-            /***************
-             * Other Browsers
-             ***************/
-            {
-                string: navigator.userAgent,
-                subString: "OmniWeb",
-                versionSearch: "OmniWeb/",
-                identity: "OmniWeb"
+                string: navigatorObject.userAgent,
+                subString: 'OPR/',
+                identity: 'Opera',
+                versionSearch: 'OPR'
             },
             {
-                string: navigator.vendor,
-                subString: "iCab",
-                identity: "iCab"
+                string: navigatorObject.userAgent,
+                subString: 'CriOS/',
+                identity: 'Chrome',
+                versionSearch: 'CriOS'
             },
             {
-                string: navigator.vendor,
-                subString: "KDE",
-                identity: "Konqueror"
+                string: navigatorObject.userAgent,
+                subString: 'Chrome/',
+                identity: 'Chrome',
+                versionSearch: 'Chrome'
             },
             {
-                string: navigator.vendor,
-                subString: "Camino",
-                identity: "Camino"
+                string: navigatorObject.userAgent,
+                subString: 'FxiOS/',
+                identity: 'Firefox',
+                versionSearch: 'FxiOS'
+            },
+            {
+                string: navigatorObject.userAgent,
+                subString: 'Firefox/',
+                identity: 'Firefox',
+                versionSearch: 'Firefox'
+            },
+            {
+                string: navigatorObject.vendor,
+                subString: 'Apple',
+                identity: 'Safari',
+                versionSearch: 'Version'
+            },
+            {
+                prop: windowObject.opera,
+                identity: 'Opera',
+                versionSearch: 'Version'
+            },
+            {
+                string: navigatorObject.userAgent,
+                subString: 'MSIE ',
+                identity: 'IE10',
+                versionSearch: 'MSIE'
+            },
+            {
+                string: navigatorObject.userAgent,
+                subString: 'Trident/',
+                identity: 'IE11',
+                versionSearch: 'rv'
+            },
+            {
+                string: navigatorObject.userAgent,
+                subString: 'Gecko/',
+                identity: 'Mozilla',
+                versionSearch: 'rv'
+            },
+            {
+                string: navigatorObject.userAgent,
+                subString: 'Mozilla/',
+                identity: 'Netscape',
+                versionSearch: 'Mozilla'
+            },
+            {
+                string: navigatorObject.userAgent,
+                subString: 'Netscape',
+                identity: 'Netscape'
+            },
+            {
+                string: navigatorObject.userAgent,
+                subString: 'OmniWeb/',
+                versionSearch: 'OmniWeb/',
+                identity: 'OmniWeb'
+            },
+            {
+                string: navigatorObject.vendor,
+                subString: 'iCab',
+                identity: 'iCab'
+            },
+            {
+                string: navigatorObject.vendor,
+                subString: 'KDE',
+                identity: 'Konqueror'
+            },
+            {
+                string: navigatorObject.vendor,
+                subString: 'Camino',
+                identity: 'Camino'
             }
         ]
     }
 
-    dataOS() {
+    dataOS(environment) {
+        const navigatorObject = environment.navigator || {}
+
         return [
             {
-                string: navigator.platform,
-                subString: 'Win',
-                identity: 'Windows'
+                test: ({ navigator }) => navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1,
+                identity: 'iOS'
             },
             {
-                string: navigator.platform,
-                subString: 'Mac',
-                identity: 'macOS'
-            },
-            {
-                string: navigator.userAgent,
+                string: navigatorObject.userAgent,
                 subString: 'iPhone',
                 identity: 'iOS'
             },
             {
-                string: navigator.userAgent,
+                string: navigatorObject.userAgent,
                 subString: 'iPad',
                 identity: 'iOS'
             },
             {
-                string: navigator.userAgent,
+                string: navigatorObject.userAgent,
                 subString: 'iPod',
                 identity: 'iOS'
             },
             {
-                string: navigator.userAgent,
+                string: navigatorObject.userAgent,
                 subString: 'Android',
                 identity: 'Android'
             },
             {
-                string: navigator.platform,
+                string: navigatorObject.platform,
+                subString: 'Win',
+                identity: 'Windows'
+            },
+            {
+                string: navigatorObject.platform,
+                subString: 'Mac',
+                identity: 'macOS'
+            },
+            {
+                string: navigatorObject.platform,
                 subString: 'Linux',
                 identity: 'Linux'
             }
