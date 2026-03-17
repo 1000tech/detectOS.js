@@ -83,117 +83,117 @@ export default class DetectOS {
                 string: navigatorObject.userAgent,
                 subString: 'EdgiOS/',
                 identity: 'Edge',
-                versionSearch: 'EdgiOS'
+                versionSearch: 'EdgiOS',
             },
             {
                 string: navigatorObject.userAgent,
                 subString: 'EdgA/',
                 identity: 'Edge',
-                versionSearch: 'EdgA'
+                versionSearch: 'EdgA',
             },
             {
                 string: navigatorObject.userAgent,
                 subString: 'Edge/',
                 identity: 'Edge',
-                versionSearch: 'Edge'
+                versionSearch: 'Edge',
             },
             {
                 string: navigatorObject.userAgent,
                 subString: 'Edg/',
                 identity: 'Edge',
-                versionSearch: 'Edg'
+                versionSearch: 'Edg',
             },
             {
                 string: navigatorObject.userAgent,
                 subString: 'OPR/',
                 identity: 'Opera',
-                versionSearch: 'OPR'
+                versionSearch: 'OPR',
             },
             {
                 string: navigatorObject.userAgent,
                 subString: 'CriOS/',
                 identity: 'Chrome',
-                versionSearch: 'CriOS'
+                versionSearch: 'CriOS',
             },
             {
                 string: navigatorObject.userAgent,
                 subString: 'Chrome/',
                 identity: 'Chrome',
-                versionSearch: 'Chrome'
+                versionSearch: 'Chrome',
             },
             {
                 string: navigatorObject.userAgent,
                 subString: 'FxiOS/',
                 identity: 'Firefox',
-                versionSearch: 'FxiOS'
+                versionSearch: 'FxiOS',
             },
             {
                 string: navigatorObject.userAgent,
                 subString: 'Firefox/',
                 identity: 'Firefox',
-                versionSearch: 'Firefox'
+                versionSearch: 'Firefox',
             },
             {
                 string: navigatorObject.vendor,
                 subString: 'Apple',
                 identity: 'Safari',
-                versionSearch: 'Version'
+                versionSearch: 'Version',
             },
             {
                 prop: windowObject.opera,
                 identity: 'Opera',
-                versionSearch: 'Version'
+                versionSearch: 'Version',
             },
             {
                 string: navigatorObject.userAgent,
                 subString: 'MSIE ',
                 identity: 'IE10',
-                versionSearch: 'MSIE'
+                versionSearch: 'MSIE',
             },
             {
                 string: navigatorObject.userAgent,
                 subString: 'Trident/',
                 identity: 'IE11',
-                versionSearch: 'rv'
+                versionSearch: 'rv',
             },
             {
                 string: navigatorObject.userAgent,
                 subString: 'Gecko/',
                 identity: 'Mozilla',
-                versionSearch: 'rv'
+                versionSearch: 'rv',
             },
             {
                 string: navigatorObject.userAgent,
                 subString: 'Mozilla/',
                 identity: 'Netscape',
-                versionSearch: 'Mozilla'
+                versionSearch: 'Mozilla',
             },
             {
                 string: navigatorObject.userAgent,
                 subString: 'Netscape',
-                identity: 'Netscape'
+                identity: 'Netscape',
             },
             {
                 string: navigatorObject.userAgent,
                 subString: 'OmniWeb/',
                 versionSearch: 'OmniWeb/',
-                identity: 'OmniWeb'
+                identity: 'OmniWeb',
             },
             {
                 string: navigatorObject.vendor,
                 subString: 'iCab',
-                identity: 'iCab'
+                identity: 'iCab',
             },
             {
                 string: navigatorObject.vendor,
                 subString: 'KDE',
-                identity: 'Konqueror'
+                identity: 'Konqueror',
             },
             {
                 string: navigatorObject.vendor,
                 subString: 'Camino',
-                identity: 'Camino'
-            }
+                identity: 'Camino',
+            },
         ]
     }
 
@@ -203,43 +203,43 @@ export default class DetectOS {
         return [
             {
                 test: ({ navigator }) => navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1,
-                identity: 'iOS'
+                identity: 'iOS',
             },
             {
                 string: navigatorObject.userAgent,
                 subString: 'iPhone',
-                identity: 'iOS'
+                identity: 'iOS',
             },
             {
                 string: navigatorObject.userAgent,
                 subString: 'iPad',
-                identity: 'iOS'
+                identity: 'iOS',
             },
             {
                 string: navigatorObject.userAgent,
                 subString: 'iPod',
-                identity: 'iOS'
+                identity: 'iOS',
             },
             {
                 string: navigatorObject.userAgent,
                 subString: 'Android',
-                identity: 'Android'
+                identity: 'Android',
             },
             {
                 string: navigatorObject.platform,
                 subString: 'Win',
-                identity: 'Windows'
+                identity: 'Windows',
             },
             {
                 string: navigatorObject.platform,
                 subString: 'Mac',
-                identity: 'macOS'
+                identity: 'macOS',
             },
             {
                 string: navigatorObject.platform,
                 subString: 'Linux',
-                identity: 'Linux'
-            }
+                identity: 'Linux',
+            },
         ]
     }
 }

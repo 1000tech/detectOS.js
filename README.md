@@ -25,9 +25,9 @@ bower i detectos.js
 import DetectOS from 'detectos.js'
 const Detect = new DetectOS()
 
-console.log("We know your browser – it's " + Detect.browser + " " + Detect.version);
-console.log("We know your OS – it's " + Detect.OS);
-console.log("We know everything about you.");
+console.log('We know your browser – it\'s ' + Detect.browser + ' ' + Detect.version);
+console.log('We know your OS – it\'s ' + Detect.OS);
+console.log('We know everything about you.');
 ```
 
 If you instantiate the class outside a browser, it throws an explicit browser-only error. For tests, you can pass a browser-like environment object:
