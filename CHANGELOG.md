@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.1
+
+- Updated README usage examples to use single quotes consistently.
+
 ## 2.0.0
 
 - Marked the library as browser-only for frontend runtimes.

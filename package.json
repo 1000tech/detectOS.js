@@ -1,6 +1,6 @@
 {
   "name": "detectos.js",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Frontend-only browser detection for popular operating systems and browsers on JS",
   "author": "1000.tech <info@1000.tech>",
   "type": "module",
